@@ -285,7 +285,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(74,1
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:var(--cyan)">5120 pts</div>
         </div>
       <div style="position:absolute;top:14px;right:14px;font-size:1.4rem;opacity:.3">→</div>
-    </div><div onclick="verClasificacion('mov','primera')" style="background: rgba(0, 201, 122, 0.08); border-color: var(--green)44; border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 14px; padding: 18px; cursor: pointer; transition: 0.2s; position: relative;" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--green)44'">
+    </div><div onclick="verClasificacion('mov','primera')" style="background:rgba(0,201,122,.08);border:1px solid var(--green)44;border-radius:14px;padding:18px;cursor:pointer;transition:all .2s;position:relative" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--green)44'">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:2px;color:var(--green);text-transform:uppercase">⚡ Primera Movimiento</div>
       <div style="font-size:.7rem;color:var(--tx3);margin-top:4px">238 jugadores · 10 torneos con datos</div>
       <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--green)22">
@@ -294,7 +294,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(74,1
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:var(--green)">3905 pts</div>
         </div>
       <div style="position:absolute;top:14px;right:14px;font-size:1.4rem;opacity:.3">→</div>
-    </div><div onclick="verClasificacion('par','primera')" style="background:rgba(61,145,255,.08);border:1px solid var(--blue)44;border-radius:14px;padding:18px;cursor:pointer;transition:all .2s;position:relative" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--blue)44'">
+    </div><div onclick="verClasificacion('par','primera')" style="background: rgba(61, 145, 255, 0.08); border-color: var(--blue)44; border-top-style: ; border-top-width: ; border-right-style: ; border-right-width: ; border-bottom-style: ; border-bottom-width: ; border-left-style: ; border-left-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: 14px; padding: 18px; cursor: pointer; transition: 0.2s; position: relative;" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--blue)44'">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:2px;color:var(--blue);text-transform:uppercase">🛑 Primera Parado</div>
       <div style="font-size:.7rem;color:var(--tx3);margin-top:4px">241 jugadores · 7 torneos con datos</div>
       <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--blue)22">
@@ -6427,13 +6427,13 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(74,1
   </div>
 
   <!-- HISTORIAL -->
-  <div id="sec-historial" style="display:none">
+  <div id="sec-historial" style="display: none;">
     <div class="card">
       <div class="ch g">📅 Archivar temporada actual</div>
       <p style="font-size:.8rem;color:var(--tx2);margin-bottom:14px">Guarda una instantánea del ranking actual antes de empezar nueva temporada.</p>
       <button class="btn btn-g" onclick="saveHistory()">💾 Archivar temporada</button>
     </div>
-    <div class="card"><div class="ch t2">📚 Temporadas archivadas</div><div id="hist-list"></div></div>
+    <div class="card"><div class="ch t2">📚 Temporadas archivadas</div><div id="hist-list"><div style="color:var(--tx3);text-align:center;padding:18px">Sin temporadas archivadas</div></div></div>
   </div>
 
   <!-- PALMARÉS -->
@@ -7172,7 +7172,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(74,1
   <div id="ig-card" style="width:1080px;max-width:100%;background:#071828;flex-shrink:0"></div>
 </div>
 
-<div id="toast" class="">✅ 317 jugadores · 14 torneos importados</div>
+<div id="toast" class="">✅ Modo edición</div>
 
 <script>
 // ══════════════════════════════════════════
