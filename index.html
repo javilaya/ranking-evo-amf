@@ -919,10 +919,10 @@ function tryUnlock(){
 function viewOnly(){$('lock').classList.add('hide');}
 function toggleLock(){
   if(isUnlocked){isUnlocked=false;updateLockBadge();toast('🔒 Modo lectura');}
-  else{// public modesetTimeout(()=>$('li').focus(),80);}
+  else{// public - no locksetTimeout(()=>$('li').focus(),80);}
 }
 function requireUnlock(){
-  if(!isUnlocked){// public modesetTimeout(()=>$('li').focus(),80);return false;}
+  if(!isUnlocked){// public - no locksetTimeout(()=>$('li').focus(),80);return false;}
   return true;
 }
 function updateLockBadge(){
@@ -3215,14 +3215,10 @@ window.__PUB__ = {"temporada": "2025-2026", "jugadores": [{"id": "j1778472790510
 load();
 S.torneos.forEach(t=>{if(!t.modalidad)t.modalidad='ambas';});
 if(!S.palmares_hist)S.palmares_hist=[];
-var lockEl=document.getElementById('lock');
-if(lockEl)lockEl.classList.add('hide');
 isUnlocked=false;
 document.body.classList.remove('editing');
-['tb-left','tb-right','tb-lock','nb-web','nb-config'].forEach(function(id){
-  var el=document.getElementById(id);if(el)el.style.setProperty('display','none','important');
-});
-setSec('clasificaciones');
+// Llamar a viewOnly() para entrar en modo lectura sin login
+viewOnly();
 renderAll();
 // Mostrar menú al arrancar
 setTimeout(()=>{ if($('menu-clases')) renderMenuCards(); }, 100);
