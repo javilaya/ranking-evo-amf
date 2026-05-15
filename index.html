@@ -894,7 +894,8 @@ if(!S.palmares_hist)S.palmares_hist=[];
 // ── CONTRASEÑA ──
 const DEFAULT_PH=btoa('amf2025');
 let PASS_NOW=localStorage.getItem('evo_pass')||DEFAULT_PH;
-function tryUnlock(){
+function tryUnlock(){ return; // public version
+function _tryUnlock_disabled(){
   const v=$('li').value;
   if(btoa(v)===PASS_NOW){
     isUnlocked=true;
@@ -3217,9 +3218,18 @@ S.torneos.forEach(t=>{if(!t.modalidad)t.modalidad='ambas';});
 if(!S.palmares_hist)S.palmares_hist=[];
 isUnlocked=false;
 document.body.classList.remove('editing');
-// Llamar a viewOnly() para entrar en modo lectura sin login
-viewOnly();
 renderAll();
+// Ocultar lock y elementos de edición
+var lockEl=document.getElementById('lock');
+if(lockEl)lockEl.classList.add('hide');
+['tb-left','tb-right','tb-lock','nb-web','nb-config'].forEach(function(id){
+  var el=document.getElementById(id);
+  if(el)el.style.setProperty('display','none','important');
+});
+document.querySelectorAll('.edit-only').forEach(function(e){
+  e.style.setProperty('display','none','important');
+});
+setSec('clasificaciones');
 // Mostrar menú al arrancar
 setTimeout(()=>{ if($('menu-clases')) renderMenuCards(); }, 100);
 </script>
