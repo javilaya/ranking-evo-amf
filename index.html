@@ -3978,20 +3978,31 @@ function renderVideosFlat(){
         </div>
       </div>` : '';
 
-      html+=`<div style="background:rgba(16,32,64,.7);border:1px solid ${hasUrl?'var(--bd)':'rgba(255,255,255,.08)'};border-radius:10px;margin-bottom:6px;overflow:hidden;opacity:${hasUrl?'1':'0.55'}">
-        <div style="display:flex;align-items:center;cursor:${hasUrl?'pointer':'default'}" ${hasUrl?`onclick="window.open('${v.url}','_blank')"`:''}>
-          ${thumb?`<img src="${thumb}" style="width:100px;height:56px;object-fit:cover;flex-shrink:0" onerror="this.style.display='none'">`:hasUrl?`<div style="width:100px;height:56px;background:rgba(232,25,44,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem">▶️</div>`:`<div style="width:100px;height:56px;background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--tx3)">—</div>`}
-          <div style="padding:8px 12px;flex:1;min-width:0">
-            <div style="font-weight:700;font-size:.83rem;color:${hasUrl?'var(--tx)':'var(--tx3)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${titulo}</div>
-            <div style="font-size:.7rem;color:var(--tx3);margin-top:1px">${hasUrl?(v.autor?'📹 '+v.autor+' · ':'')+'Ver en YouTube →':'Sin vídeo aún'}</div>
+      if(isUnlocked){
+        html+=`<div style="background:rgba(16,32,64,.7);border:1px solid ${hasUrl?'var(--bd)':'rgba(255,255,255,.08)'};border-radius:10px;margin-bottom:6px;overflow:hidden;opacity:${hasUrl?'1':'0.55'}">
+          <div style="display:flex;align-items:center;cursor:${hasUrl?'pointer':'default'}" ${hasUrl?`onclick="window.open('${v.url}','_blank')"`:''}> 
+            ${thumb?`<img src="${thumb}" style="width:100px;height:56px;object-fit:cover;flex-shrink:0" onerror="this.style.display='none'">`:hasUrl?`<div style="width:100px;height:56px;background:rgba(232,25,44,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem">▶️</div>`:`<div style="width:100px;height:56px;background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--tx3)">—</div>`}
+            <div style="padding:8px 12px;flex:1;min-width:0">
+              <div style="font-weight:700;font-size:.83rem;color:${hasUrl?'var(--tx)':'var(--tx3)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${titulo}</div>
+              <div style="font-size:.7rem;color:var(--tx3);margin-top:1px">${hasUrl?(v.autor?'📹 '+v.autor+' · ':'')+'Ver en YouTube →':'Sin vídeo aún'}</div>
+            </div>
+            ${isUnlocked?`<div style="display:flex;gap:4px;padding:0 8px;flex-shrink:0" onclick="event.stopPropagation()">
+              <button class="btn btn-xs btn-b" onclick="document.getElementById('vid-edit-form-${anyo}-${i}').style.display=document.getElementById('vid-edit-form-${anyo}-${i}').style.display==='none'?'block':'none'" title="Editar">✏️</button>
+              <button class="btn btn-xs btn-d" onclick="delVideoFlat('${anyo}',${i})" title="Eliminar">🗑️</button>
+            </div>`:''}
           </div>
-          ${isUnlocked?`<div style="display:flex;gap:4px;padding:0 8px;flex-shrink:0" onclick="event.stopPropagation()">
-            <button class="btn btn-xs btn-b" onclick="document.getElementById('vid-edit-form-${anyo}-${i}').style.display=document.getElementById('vid-edit-form-${anyo}-${i}').style.display==='none'?'block':'none'" title="Editar">✏️</button>
-            <button class="btn btn-xs btn-d" onclick="delVideoFlat('${anyo}',${i})" title="Eliminar">🗑️</button>
-          </div>`:''}
-        </div>
-        ${editForm}
-      </div>`;
+          ${editForm}
+        </div>`;
+      } else {
+        html+=`<a href="${v.url}" target="_blank" style="text-decoration:none;display:block;background:rgba(16,32,64,.7);border:1px solid var(--bd);border-radius:10px;overflow:hidden;transition:border .2s" onmouseover="this.style.borderColor='var(--r)'" onmouseout="this.style.borderColor='var(--bd)'">
+          ${thumb?`<img src="${thumb}" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block" onerror="this.style.display='none'">`:`<div style="width:100%;aspect-ratio:16/9;background:rgba(232,25,44,.1);display:flex;align-items:center;justify-content:center;font-size:2rem">▶️</div>`}
+          <div style="padding:8px 10px">
+            <div style="font-weight:700;font-size:.78rem;color:var(--tx);line-height:1.3">${v.ronda} · ${v.cat}</div>
+            ${v.jugadores?`<div style="font-size:.7rem;color:rgba(255,255,255,.8);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${v.jugadores}</div>`:''}
+            ${v.autor?`<div style="font-size:.65rem;color:var(--tx3);margin-top:2px">📹 ${v.autor}</div>`:''}
+          </div>
+        </a>`;
+      }
     });
 
     // Add video form for this year (edit only)
@@ -4025,6 +4036,7 @@ function renderVideosFlat(){
         </div>
       </div>`;
     }
+    if(!isUnlocked) html+='</div>'; // cerrar grid
     html+='</div>';
   });
 
